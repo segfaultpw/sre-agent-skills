@@ -1,0 +1,20 @@
+{
+  "name": "sre-agent",
+  "displayName": "SRE Agent",
+  "description": "Connect an AI agent to SRE Agent over MCP and use it safely: alerts, investigations, runbooks, fix handoffs, the REST API and webhooks.",
+  "author": {
+    "name": "SRE Agent",
+    "url": "https://sreagent.app"
+  },
+  "homepage": "https://docs.sreagent.app",
+  "repository": "https://github.com/segfaultpw/sre-agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "sre",
+    "incident-response",
+    "mcp",
+    "alerts",
+    "runbooks",
+    "on-call"
+  ]
+}

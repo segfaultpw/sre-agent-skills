@@ -1,0 +1,21 @@
+{
+  "name": "sre-agent-skills",
+  "description": "Skills that teach AI agents to connect to and operate SRE Agent.",
+  "owner": {
+    "name": "SRE Agent",
+    "url": "https://sreagent.app"
+  },
+  "plugins": [
+    {
+      "name": "sre-agent",
+      "source": "./plugins/sre-agent",
+      "description": "Connect an AI agent to SRE Agent over MCP and use it safely: alerts, investigations, runbooks, fix handoffs, the REST API and webhooks.",
+      "category": "monitoring",
+      "tags": [
+        "sre",
+        "mcp",
+        "incident-response"
+      ]
+    }
+  ]
+}

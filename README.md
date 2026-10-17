@@ -9,7 +9,7 @@ how deletes and scopes work, how to work a Fix with Claude handoff from brief to
 limits show up, and how to reach the configuration API, inbound webhooks and Terraform export. It is a usage
 guide. The full tool list lives in the [MCP reference](https://docs.sreagent.app/api-reference/mcp).
 
-The MCP server and configuration API need the Business plan, and you need an API key or personal access token
+The MCP server and configuration API need the Business or Enterprise plan, and you need an API key or personal access token
 from your SRE Agent organization.
 
 ## Install in Claude Code
@@ -27,6 +27,17 @@ claude mcp add --transport http sre-agent https://sreagent.app/api/mcp \
   --header "Authorization: Bearer $SRE_AGENT_API_KEY"
 ```
 
+## Update
+
+A third-party marketplace does not update in the background by default. To pick up the newest skill, run:
+
+```text
+/plugin marketplace update sre-agent-skills
+```
+
+or enable auto-update for the marketplace from the `/plugin` menu. Each commit here is a new version, because the
+plugin sets no `version`.
+
 ## Use it with another agent
 
 The skill is plain Markdown. Copy
@@ -43,9 +54,10 @@ plugins/sre-agent/skills/sre-agent/SKILL.md          the skill
 
 ## How it is kept current
 
-These files are generated. SRE Agent renders them from the server's own tool catalogue with
-`mix sre.skill.export`, and each release opens a pull request here when anything changed. Edit the template in
-the SRE Agent source, not these files: a hand edit here is overwritten by the next release.
+The three files under `.claude-plugin/` and `plugins/` are generated. SRE Agent renders them from the server's own
+tool catalogue with `mix sre.skill.export`, and a release opens (or updates) one pull request from the
+`skill-sync` branch here when anything changed. Edit the template in the SRE Agent source, not those files: a hand
+edit is overwritten by the next release. This README and the LICENSE are maintained by hand in this repository.
 
 ## Report a problem
 

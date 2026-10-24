@@ -1,7 +1,7 @@
 {
   "name": "sre-agent",
   "displayName": "SRE Agent",
-  "version": "0.455.0",
+  "version": "0.456.0",
   "description": "Connect an AI agent to SRE Agent over MCP and use it safely: alerts, investigations, runbooks, fix handoffs, the REST API and webhooks.",
   "author": {
     "name": "SRE Agent",

@@ -1,6 +1,6 @@
 ---
 name: sre-agent
-description: Connect to and operate SRE Agent (sreagent.app) from an AI coding agent. Covers connecting the MCP server (https://sreagent.app/api/mcp) with an API key or personal token, which of its 309 tools to call and in what order, destructive-call rules (confirm), the fix handoff loop (get_fix_brief, report_fix_result), plan gates and rate limits, and the REST configuration API, inbound webhooks and Terraform export. Use when the task mentions SRE Agent, alerts, investigations, runbooks, SLOs, on-call, self-healing or a fix handoff on that platform.
+description: Connect to and operate SRE Agent (sreagent.app) from an AI coding agent. Covers connecting the MCP server (https://sreagent.app/api/mcp) with an API key or personal token, which of its 322 tools to call and in what order, destructive-call rules (confirm), the fix handoff loop (get_fix_brief, report_fix_result), plan gates and rate limits, and the REST configuration API, inbound webhooks and Terraform export. Use when the task mentions SRE Agent, alerts, investigations, runbooks, SLOs, on-call, self-healing or a fix handoff on that platform.
 ---
 
 # SRE Agent
@@ -54,13 +54,13 @@ Any other MCP client: point its HTTP transport at the endpoint and send the `Aut
 10. **Writes are audited.** Every write tool leaves an audit row naming the credential, so act as you would in front of the user.
 11. **Ask before consequential actions.** Approving a healing action, running a runbook, resolving or acknowledging alerts, changing routing or on-call, and anything that notifies people or changes production should be proposed to the user first unless they asked for exactly that.
 
-## The tool surface (309 tools)
+## The tool surface (322 tools)
 
-63 read tools, 80 write tools and 166 admin tools, in these groups. Names follow `list_x`, `get_x`, `create_x`, `update_x`, `delete_x`, plus verbs such as `run_`, `approve_`, `acknowledge_`, `resolve_`. The examples are real tool names, not the whole group.
+67 read tools, 80 write tools and 175 admin tools, in these groups. Names follow `list_x`, `get_x`, `create_x`, `update_x`, `delete_x`, plus verbs such as `run_`, `approve_`, `acknowledge_`, `resolve_`. The examples are real tool names, not the whole group.
 
 - **Account and discovery**: Which organizations the credential reaches, who is in them, the audit trail, release notes, your own queue, and telling the builders what is broken. Examples: `list_organizations`, `list_whats_new`, `my_attention`, `list_members`, `list_audit_logs`, `submit_feedback`.
 - **Fix handoff and fix requests**: Hand a problem to a local agent session, fetch its frozen brief, report the outcome, ask for a pull request, or register a local fix runner. Examples: `get_fix_brief`, `report_fix_result`, `mint_fix_handoff`, `list_pending_handoffs`, `request_fix`.
-- **Code improvement**: Recurring bad behaviour the code scan found in your services, approving or ignoring a finding, and the verification runs that check a fix. Examples: `list_code_findings`, `get_code_finding`, `approve_code_finding`, `ignore_code_finding`, `list_verification_runs`.
+- **Code improvement**: Recurring bad behaviour the code scan found in your services, approving or ignoring a finding, the verification runs that check a fix, and weekly detection over every repository: coverage, which repositories are in or out of scope, the schedule and the suggested findings. Examples: `list_code_findings`, `get_code_finding`, `approve_code_finding`, `ignore_code_finding`, `list_verification_runs`, `get_code_coverage`, `list_code_repositories`, `set_code_scan_scope`, `run_code_detection`, `list_suggested_findings`, `promote_suggested_finding`, `dismiss_suggested_finding`, `use_behaviour_suggestion`, `dismiss_behaviour_suggestion`, `accept_class_alias`, `decline_class_alias`, `get_code_detection_settings`, `update_code_detection_settings`.
 - **Telemetry queries**: Read logs, metrics, traces and CloudTrail from the customer's connected sources, and see how a service maps to them. Examples: `query_logs`, `query_metrics`, `query_prometheus`, `search_traces`, `query_cloudtrail`.
 - **Alerts and investigations**: Active alerts, AI investigations, what changed around an incident, and acknowledging or resolving. Examples: `get_active_alerts`, `get_alert_details`, `investigate_alert`, `get_investigation`, `what_changed`.
 - **Alert routing, mutes and outbound paging**: Where alerts go, what is silenced, and which external targets are paged. Examples: `list_alert_routes`, `upsert_alert_route`, `create_alert_mute`, `list_outbound_configs`, `list_outbound_rules`.

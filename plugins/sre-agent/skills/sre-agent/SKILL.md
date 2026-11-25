@@ -1,6 +1,6 @@
 ---
 name: sre-agent
-description: Connect to and operate SRE Agent (sreagent.app) from an AI coding agent. Covers connecting the MCP server (https://sreagent.app/api/mcp) with an API key or personal token, which of its 423 tools to call and in what order, destructive-call rules (confirm), the fix handoff loop (get_fix_brief, report_fix_result), plan gates and rate limits, and the REST configuration API, inbound webhooks and Terraform export. Use when the task mentions SRE Agent, alerts, investigations, runbooks, SLOs, on-call, self-healing or a fix handoff on that platform.
+description: Connect to and operate SRE Agent (sreagent.app) from an AI coding agent. Covers connecting the MCP server (https://sreagent.app/api/mcp) with an API key or personal token, which of its 426 tools to call and in what order, destructive-call rules (confirm), the fix handoff loop (get_fix_brief, report_fix_result), plan gates and rate limits, and the REST configuration API, inbound webhooks and Terraform export. Use when the task mentions SRE Agent, alerts, investigations, runbooks, SLOs, on-call, self-healing or a fix handoff on that platform.
 ---
 
 # SRE Agent
@@ -54,9 +54,9 @@ Any other MCP client: point its HTTP transport at the endpoint and send the `Aut
 10. **Writes are audited.** Every write tool except `react_to_ticket` and `rate_investigation` (a reaction and a rating, which no door audits) leaves an audit row naming the credential, so act as you would in front of the user.
 11. **Ask before consequential actions.** Approving a healing action, running a runbook, resolving or acknowledging alerts, changing routing or on-call, and anything that notifies people or changes production should be proposed to the user first unless they asked for exactly that.
 
-## The tool surface (423 tools)
+## The tool surface (426 tools)
 
-92 read tools, 107 write tools and 224 admin tools, in these groups. Names follow `list_x`, `get_x`, `create_x`, `update_x`, `delete_x`, plus verbs such as `run_`, `approve_`, `acknowledge_`, `resolve_`. The examples are real tool names, not the whole group.
+95 read tools, 107 write tools and 224 admin tools, in these groups. Names follow `list_x`, `get_x`, `create_x`, `update_x`, `delete_x`, plus verbs such as `run_`, `approve_`, `acknowledge_`, `resolve_`. The examples are real tool names, not the whole group.
 
 - **Account and discovery**: Which organizations the credential reaches, who is in them, the audit trail, release notes, your own queue, and telling the builders what is broken and reading their replies. Examples: `list_organizations`, `list_whats_new`, `my_attention`, `list_members`, `submit_feedback`, `get_my_feedback`.
 - **Fix handoff and fix requests**: Hand a problem to a local agent session, fetch its frozen brief, report the outcome, ask for a pull request, or register a local fix runner, read how it is doing and resume it or discard what waits for it. Examples: `get_fix_brief`, `report_fix_result`, `mint_fix_handoff`, `list_pending_handoffs`, `request_fix`, `get_fix_runner_health`, `resume_fix_runner`.
@@ -73,7 +73,7 @@ Any other MCP client: point its HTTP transport at the endpoint and send the `Aut
 - **Security, drift and compliance**: IAM, Kubernetes, secret and API anomaly findings, the security queue that triages every finding (assign, acknowledge, accept a risk, comment, bulk) with its SLA policy, notification rules and digest, image CVEs, configuration drift, posture scans and compliance evidence. Examples: `list_iam_findings`, `run_kubernetes_scan`, `list_secret_findings`, `list_security_findings`, `accept_security_risk`, `check_drift_now`, `list_compliance_controls`, `create_compliance_export`.
 - **Data sources, connectors and integrations**: Telemetry data sources, runbook connectors, GitHub, Slack, ticket trackers, webhook secrets and per-repository settings. Examples: `list_data_sources`, `create_data_source`, `list_connectors`, `get_github_integration`, `configure_slack`.
 - **Cost**: Cloud cost waste still to act on. Examples: `finops_waste`.
-- **Ops board**: Cards, comments, approvals, reminders and labels on the organization's board, changing many cards at once, the rules that act on cards, and giving a card to SRE Agent, following its run and setting how it works. Examples: `create_ticket`, `list_tickets`, `update_ticket`, `bulk_update_tickets`, `request_ticket_approval`, `list_labels`, `assign_card_to_sre_agent`, `get_lead_run`, `list_board_rules`.
+- **Ops board**: Cards, comments, approvals, reminders and labels on the organization's board, changing many cards at once, its reports, weekly summary and calendar, the rules that act on cards, and giving a card to SRE Agent, following its run and setting how it works. Examples: `create_ticket`, `list_tickets`, `update_ticket`, `bulk_update_tickets`, `request_ticket_approval`, `list_labels`, `assign_card_to_sre_agent`, `get_lead_run`, `list_board_rules`.
 - **Knowledge**: What the organization has told the product about how it works, with a review step for proposals. Examples: `list_knowledge`, `get_knowledge_item`, `add_knowledge`, `approve_knowledge_item`.
 - **Control Tower**: The overseer that audits the organization and its findings, runs and settings. Examples: `list_overseer_findings`, `run_overseer_now`, `get_overseer_settings`.
 - **Status page**: Components, incidents and settings of the public status page. Examples: `get_status_page`, `create_status_page_incident`, `list_status_page_components`.
